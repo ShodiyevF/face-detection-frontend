@@ -1,8 +1,7 @@
-import Login from "../Login/Login";
-import { Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 import Leftbar from "../../components/menu/Leftbar";
 import Navbar from "../../components/menu/Navbar";
-import './home.css'
+import "./home.css";
 
 export default function MainPage() {
   return (
@@ -13,9 +12,7 @@ export default function MainPage() {
         </div>
         <div className="col-md-10 shablon">
           <Navbar />
-          <Routes>
-            <Route path="/login" element={<Login />} />
-          </Routes>
+          <Outlet />
         </div>
       </div>
     </div>
