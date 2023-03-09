@@ -11,7 +11,7 @@ function Navbar() {
             className="search_place"
             placeholder="Bu yerdan qidiring"
           />
-          <i class="fa-solid fa-magnifying-glass" id="search"></i>
+          <i className="fa-solid fa-magnifying-glass" id="search"></i>
         </div>
         {/* boxSized */}
         <div style={{ margin: "0px 100px" }}></div>
@@ -21,18 +21,18 @@ function Navbar() {
             src="https://png.pngtree.com/element_our/png/20181022/man-avatar-icon-professional-man-character-business-man-avatar-carton-symbol-png_206531.jpg"
             alt="avatar"
           />
-          <div class="dropdown drd_btn" style={{ background: "#fff" }}>
+          <div className="dropdown drd_btn" style={{ background: "#fff" }}>
             <button
-              class="btn btn-white dropdown-toggle"
+              className="btn btn-white dropdown-toggle"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
               Admin
             </button>
-            <ul class="dropdown-menu">
+            <ul className="dropdown-menu">
               <li>
-                <a class="dropdown-item" href="#">
+                <a className="dropdown-item" href="#">
                   Profile
                 </a>
               </li>
