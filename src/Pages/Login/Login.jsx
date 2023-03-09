@@ -1,31 +1,62 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { Domain } from "../../Domain";
 import './Login.css'
 function Login() {
-  // const input_login = document.querySelector(".input_login"),
-  //   input_password = document.querySelector("input_password");
+  const [data, setData] = useState({
+    email: '',
+    password: '',
+  })
+  const [login , setLogin] = useState()
 
-  // fetch(Domain + "/api/login", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify({
-  //     user_email: input_login.value.toString(),
-  //     user_password: input_password.value.toString(),
-  //   }),
-  // });
+  function submit(e) {
+    e.preventDefault()
+    axios.post(Domain + '/api/login', {
+      user_email: data.email,
+      user_password: data.password
+    })
+      .then(res => res.json())
+      .then(data => setLogin(data))
+      .catch(err => console.log(err))
+    if (login.status === 200) {
+      localStorage.setItem('token', login.token)
+      window.location = '/'
+    }
+  }
+
+  function handle(e) {
+    const newData = { ...data }
+    newData[e.target.id] = e.target.value;
+    setData(newData)
+  }
+
+
   return (
     <div className="container">
       <center>
         <div className="login">
           <h1>Tizimga kirish</h1>
           <p>Boshqaruv paneliga o'tish</p>
-          <form>
+          <form onSubmit={(e)=>submit(e)}>
             <label htmlFor="Email">Email</label>
-            <input type="email" className="form-control input_login" />
+            <input
+              onChange={(e) => handle(e)}
+              id="email"
+              value={data.email}
+              type="email"
+              className="form-control input_login"
+              placeholder="Email"
+            />
             <br />
             <label htmlFor="Password">Password</label>
-            <input type="password" className="form-control input_password" />
+            <input
+              onChange={(e) => handle(e)}
+              id="password"
+              value={data.password}
+              type="password"
+              placeholder="Parol"
+              className="form-control input_password"
+            />
             <br />
             <center>
               <button type="submit" className="button">
