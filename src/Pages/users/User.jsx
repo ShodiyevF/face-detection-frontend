@@ -89,14 +89,14 @@ function User() {
                   </td>
                   <td className="item_show">{person.role_id.role_name}</td>
                   <td className="item_show">
-                    <button className="user_list_green">
+                    <button className="user_list_green mx-1">
                       <i
                         class="fa-regular fa-pen-to-square user_btn_icons"
                         style={{ marginRight: "5px" }}
                       ></i>
                       Tahrirlash
                     </button>
-                    <button className="user_list_red">
+                    <button className="user_list_red mx-1">
                       <i
                         class="fa-regular fa-trash-can user_btn_icons"
                         style={{ marginRight: "5px" }}

@@ -101,20 +101,20 @@ function User_Modal({ setIsOpenModal }) {
                 placeholder="*****"
               />
             </div>
-            <div className="col ">
-              <label>
+            <div className="col upload_image_place">
+              <label className="form-label label_text">
                 Rasm
                 <input
                   hidden
                   type="file"
                   onChange={(e) => setAvatar(e.target.files[0])}
-                  className=" user_input_field"
+                  className="user_input_field"
                   accept=""
                 />
       
                 <div className="user_input_field_file text-center">
                   {
-                    avatar ? <span>{avatar.name}</span> : <span>rasm</span>
+                    avatar ? <span>{avatar.name?.slice(25)}</span> : <span>rasm</span>
                   }
                 </div>
               </label>
