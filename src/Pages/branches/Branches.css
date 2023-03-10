@@ -28,17 +28,26 @@ td{
 }
 
 .green{
+  font-size: 12px;
   background-color: #027373;
   color: white;
   border-radius: 20px;
   padding: 0.3rem 1.2rem;
   border: none;
 }
+.green-border{
+  border: 1px solid #027373;
+  color: #027373;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 0.3rem 1.2rem;
+}
 .red{
   background-color: #C00303;
   color: white;
   border-radius: 20px;
   padding: 0.3rem 1.2rem;
+  font-size: 12px;
   border: none;
 }
 .green-button{
@@ -92,7 +101,7 @@ td{
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.6);;
 }
-.small-modal{
+.small-modal , .delete-modal{
   background-color: #fff;
   width: 400px;
   padding: 2rem;
@@ -100,5 +109,4 @@ td{
   position: absolute;
   top: 15rem;
   left: 35rem;
-
 }

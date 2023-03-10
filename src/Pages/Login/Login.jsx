@@ -7,22 +7,23 @@ function Login() {
     email: '',
     password: '',
   })
-  const [login , setLogin] = useState()
+  const [login , setLogin] = useState(0)
 
   function submit(e) {
     e.preventDefault()
-    axios.post(Domain + '/api/login', {
-      user_email: data.email,
-      user_password: data.password
+    axios.post(Domain + '/login', {
+      "user_email": data.email,
+      "user_password": data.password
     })
-      .then(res => res.json())
       .then(data => setLogin(data))
-      .catch(err => console.log(err))
+      .catch(err => console.log(err.data.message))
     if (login.status === 200) {
-      localStorage.setItem('token', login.token)
+      localStorage.setItem("token", login.data.token);
       window.location = '/'
     }
   }
+    console.log(login.status);
+    console.log(login);
 
   function handle(e) {
     const newData = { ...data }
