@@ -7,9 +7,9 @@ import users from '../../utils/icons/users_white.png'
 function Leftbar() {
 
   let btsMass =[
-    {id:1,icon:fourSquare,title:"Asosiy menu",link:""},
-    {id:2,icon:phone,title:"Filiallar",link:""},
-    {id:3,icon:users,title:"Xodimlar",link:""},
+    {id:1,icon:fourSquare,title:"Asosiy menu",link:"/"},
+    {id:2,icon:phone,title:"Filiallar",link:"/branches"},
+    {id:3,icon:users,title:"Xodimlar",link:"/users"},
   ]
 
   return (
@@ -22,7 +22,7 @@ function Leftbar() {
           btsMass?.map((s)=>{
             
             return(
-              <NavLink className="btn_navigate btn " key={s.id} >
+              <NavLink className="btn_navigate btn " to={s.link} key={s.id} >
                 <img src={s.icon} alt="icons" className="icons_img mx-2" />
                 <span>{s.title}</span>
               </NavLink>

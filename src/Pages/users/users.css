@@ -1,5 +1,5 @@
 .user_ul {
-  margin-top: 127px;
+  margin-top: 60px;
   margin-left: 6rem;
   max-height: 400px;
   overflow: auto !important;
@@ -45,21 +45,72 @@
 .user_list_green {
   background-color: #027373;
   color: white;
-  border-radius: 20px;
+  border-radius: 100px;
   padding: 0.3rem 1.2rem;
   border: none;
+
 }
 
 .user_list_red {
   background-color: #C00303;
   color: white;
-  border-radius: 20px;
+  border-radius: 100px;
   padding: 0.3rem 1.2rem;
   border: none;
+
 }
+
+.user_btn_icons {
+  height: 15px;
+  font-size: 20px;
+}
+
 /* tbody{
   overflow-y:scroll;
   height:400px;
   display: block;
   
 } */
+
+
+/* Modal props */
+
+.modal_button {
+  position: relative;
+  height: 70px;
+  /* width: 100%;
+  height: 40px; */
+}
+
+.open_model_button {
+  background: #027373;
+  border: 1px solid #027373;
+  border-radius: 100px;
+  color: #fff;
+  padding: 11px 12px;
+  position: absolute;
+  top: 40px;
+  right: 15rem;
+}
+.filter_model_button {
+  width: 95px;
+  height: 52px;
+  background: #027373;
+  border: 1px solid #027373;
+  border-radius: 100px;
+  color: #fff;
+  padding: 11px 12px;
+  position: absolute;
+  top: 40px;
+  right: 8rem;
+}
+.filter_model_button  img {
+  color: white;
+  margin-right: 5px;
+}
+
+.open_model_button i {
+  width: 24px;
+  color: white;
+  height: 24px;
+}
