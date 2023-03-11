@@ -2,7 +2,7 @@ import React from "react";
 
 function Navbar() {
   let img =
-    "https://png.pngtree.com/png-vector/20190321/ourmid/pngtree-vector-users-icon-png-image_856952.jpg";
+    "https://png.pngtree.com/element_our/png/20181022/man-avatar-icon-professional-man-character-business-man-avatar-carton-symbol-png_206531.jpg";
   return (
     <div className="navbar_top">
         <div className="search">
@@ -18,7 +18,7 @@ function Navbar() {
         {/* user admin route */}
         <div className="avatar">
           <img
-            src="https://png.pngtree.com/element_our/png/20181022/man-avatar-icon-professional-man-character-business-man-avatar-carton-symbol-png_206531.jpg"
+            src={img}
             alt="avatar"
           />
           <div className="dropdown drd_btn" style={{ background: "#fff" }}>

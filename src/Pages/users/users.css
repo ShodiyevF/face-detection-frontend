@@ -1,24 +1,23 @@
-.user_ul {
-  margin-top: 60px;
-  margin-left: 6rem;
-  max-height: 400px;
-  overflow-y: auto !important;
-  width: 85%;
-  max-height: 700px;
-  background-color: #027373;
-  border-radius: 20px !important;
-
+.user_page {
+  max-height: 100vh;
 }
 
-.first_child{
+.user_ul {
+  overflow-y: auto !important;
+  width: 87%;
+  background-color: #027373;
+  border-radius: 20px !important;
+  margin-left: 3.5rem;
+}
+
+.first_child {
   background-color: transparent;
   color: #fff;
   border-radius: 20px !important;
-  /* display: none; */
 }
-.user_list{
+
+.user_list {
   max-height: 30px !important;
-  /* padding: 40px;  */
 }
 
 .user_list_green {
@@ -43,7 +42,7 @@
   font-size: 20px;
 }
 
-.item_show{
+.item_show {
   max-height: 50px !important;
 }
 
@@ -74,6 +73,7 @@
   top: 40px;
   right: 15rem;
 }
+
 .filter_model_button {
   width: 95px;
   height: 52px;
@@ -86,7 +86,8 @@
   top: 40px;
   right: 8rem;
 }
-.filter_model_button  img {
+
+.filter_model_button img {
   color: white;
   margin-right: 5px;
 }
@@ -95,4 +96,22 @@
   width: 24px;
   color: white;
   height: 24px;
+}
+
+.table_box{
+  position: absolute;
+  background: #027373;
+  top: -9rem;
+}
+.table_box thead{
+  background: #027373;
+
+}
+
+.tale_box{
+  /* style={{ height: "400px", overflow: "auto",  marginTop:"120px", position:"relative" }} */
+  height: 400px;
+  overflow-y: auto;
+  margin-top: 120px;
+  position: relative;
 }

@@ -3,13 +3,12 @@ import icon from "../../utils/icons/users.png";
 import iconFilter from "../../utils/icons/filter.png";
 import "./users.css";
 import User_Modal from "../../components/modal/User_Modal";
+import UserSearchAndFilter from "../../components/userSearch/UserSearchAndFilter";
+import UserTable from "../../components/usertable/UserTable";
 
 function User() {
   const [isopenModal, setIsOpenModal] = useState(false);
-
-  function openModal() {
-    setIsOpenModal(!isopenModal);
-  }
+  const [isopenFilter, setIsOpenFilter] = useState(false);
 
   const data = [
     {
@@ -70,23 +69,30 @@ function User() {
   return (
     <>
       {isopenModal && <User_Modal setIsOpenModal={setIsOpenModal} />}
-
-        <div className="user_page">
-          {/* Modal ochadigan oyna */}
-          <div className="modal_button">
-            <button className="open_model_button" onClick={openModal}>
-              <i class="fa-regular fa-plus"></i>
-              Yangi hodimlar qo'shish
-            </button>
-            <button className="filter_model_button">
-              <img src={iconFilter} alt="icon" />
-              Filter
-            </button>
-          </div>
-          {
-        data.length ?
-          <table className="user_ul">
-            <thead>
+      <div className="user_page">
+        {/* Modal ochadigan oyna */}
+        <div className="modal_button">
+          <button
+            className="open_model_button"
+            onClick={() => setIsOpenModal(true)}
+          >
+            <i class="fa-regular fa-plus"></i>
+            Yangi hodimlar qo'shish
+          </button>
+          <button
+            className="filter_model_button"
+            onClick={() => setIsOpenFilter(!isopenFilter)}
+          >
+            <img src={iconFilter} alt="icon" />
+            Filter
+          </button>
+        </div>
+        {isopenFilter && <UserSearchAndFilter />}
+        {/* <UserTable data={data} /> */}
+        {/* <div className="table"> */}
+        <div className="tale_box">
+          <table className="table_box">
+            <thead className="sticky-top">
               <tr className="first_child">
                 <th>Hodim</th>
                 <th>Email</th>
@@ -99,15 +105,15 @@ function User() {
               {data?.map((person) => {
                 return (
                   <tr className="user_list">
-                    <td className="item_show">
-                      <img src={icon} alt="avatar" />
+                    <td className="">
+                      <img src={person.icon} alt="avatar" />
                     </td>
-                    <td className="item_show">{person.user_email}</td>
-                    <td className="item_show">
+                    <td className="">{person.user_email}</td>
+                    <td className="">
                       {person.user_createdat.toString()}
                     </td>
-                    <td className="item_show">{person.role_id.role_name}</td>
-                    <td className="item_show">
+                    <td className="">{person.role_id.role_name}</td>
+                    <td className="">
                       <button className="user_list_green mx-1">
                         <i
                           class="fa-regular fa-pen-to-square user_btn_icons"
@@ -128,11 +134,8 @@ function User() {
               })}
             </tbody>
           </table>
-                :
-                <h5 className="text-center">Ma'lumotlar yo'q</h5>
-            }
         </div>
-  
+      </div>
     </>
   );
 }
