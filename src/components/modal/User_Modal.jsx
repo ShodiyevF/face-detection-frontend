@@ -6,6 +6,10 @@ import SoloSelect from "../selection/SoloSelect";
 function User_Modal({ setIsOpenModal }) {
   const [avatar, setAvatar] = useState("");
 
+  let img =
+  "https://png.pngtree.com/element_our/png/20181022/man-avatar-icon-professional-man-character-business-man-avatar-carton-symbol-png_206531.jpg";
+
+
   const filials = [
     { id: 1, branch_name: "Pokiza" },
     { id: 2, branch_name: "Nasiya savdo 1" },
@@ -113,11 +117,18 @@ function User_Modal({ setIsOpenModal }) {
                   type="file"
                   className="form-control user_input_field "
                   placeholder="*****"
+                  onChange={(e)=>setAvatar(e.target.files[0])}
                 />
               </div>
-              <img src="" className="user_input_field_avatar " alt="avatar" />
+              <img src={avatar ? URL.createObjectURL(avatar) : img } className="user_input_field_avatar " alt="avatar" />
             </div>
           </form>
+          <div className="user_post_btns_group">
+            <div className="user_btns_box">
+              <button className="cancel_btn" onClick={()=>setIsOpenModal(false)}>Bekor qilish</button>
+              <button className="confirm_btn">Saqlash</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
