@@ -1,7 +1,10 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Domain } from "../../Domain";
 import "./Branches.css";
+
+
+
 function Branches() {
   function handle(e) {
     const newPost = { ...post };
@@ -9,44 +12,30 @@ function Branches() {
     setPost(newPost);
   }
   const [post, setPost] = useState({
-    branch_name : ''
-  })
+    branch_name: "",
+  });
   const [isBranchModal, setIsBranchModal] = useState(false);
   const [isSmallModal, setIsSmallModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
-  const [branches, setBranches] = useState([])
+  const [branches, setBranches] = useState([]);
   function close() {
-    setDeleteModal(false)
-    setIsSmallModal(true)
+    setDeleteModal(false);
+    setIsSmallModal(true);
   }
   function closeModal() {
-    setIsBranchModal(false)
-    setIsSmallModal(false)
+    setIsBranchModal(false);
+    setIsSmallModal(false);
   }
-  
-  axios.get(Domain + "/branches").then(data => setBranches(data.data)).catch(err => console.log(err))
-  // const data = [
-  //   {
-  //     id: 1,
-  //     name: "Nasiya Savdo 1",
-  //     date: "08.03.2023 11:46",
-  //   },
-  //   {
-  //     id: 1,
-  //     name: "Nasiya Savdo 1",
-  //     date: "08.03.2023 11:46",
-  //   },
-  //   {
-  //     id: 1,
-  //     name: "Nasiya Savdo 1",
-  //     date: "08.03.2023 11:46",
-  //   },
-  //   {
-  //     id: 1,
-  //     name: "Nasiya Savdo 1",
-  //     date: "08.03.2023 11:46",
-  //   },
-  // ];
+  useEffect(() => {
+    LoadBranches();
+  }, []);
+  function LoadBranches() {
+    axios
+      .get(Domain + "/branches")
+      .then((data) => setBranches(data.data))
+      .catch((err) => console.log(err.response.message));
+  }
+
   return (
     <div className="branches">
       <button
@@ -55,39 +44,45 @@ function Branches() {
       >
         <i className="fas fa-plus"></i> Yangi filiallar qo'shish
       </button>
-      <table>
-        <thead className="thead">
-          <th>ID</th>
-          <th>Nomi</th>
-          <th>Sana</th>
-          <th>Tahrirlash</th>
-        </thead>
-        {branches.map((item, idx) => {
-          return (
-            <tr>
-              <td>{idx}</td>
-              <td>{item.branch_name}</td>
-              <td>{item.branch_createdat}</td>
-              <td className="d-flex align-items-center justify-content-center gap-3 mt-3">
-                <button
-                  className="green d-flex align-items-center gap-1"
-                  onClick={() => setIsBranchModal(true)}
-                >
-                  <i className="fa-solid fa-edit"></i>
-                  Tahrirlash
-                </button>
-                <button
-                  className="red d-flex align-items-center gap-1"
-                  onClick={() => setDeleteModal(true)}
-                >
-                  <i className="fa-regular fa-trash-can"></i>
-                  O'chirish
-                </button>
-              </td>
+      <div className="wrapper-table">
+        <table className="table">
+          <thead>
+            <tr className="thead">
+              <th>ID</th>
+              <th>Nomi</th>
+              <th>Sana</th>
+              <th>Tahrirlash</th>
             </tr>
-          );
-        })}
-      </table>
+          </thead>
+            <tbody className="body-table">
+              {branches.map((item, idx) => {
+                return (
+                  <tr key={idx} className="tbody">
+                    <td>{idx + 1}</td>
+                    <td>{item.branch_name}</td>
+                    <td>{item.branch_createdat.slice(0, 10)}</td>
+                    <td className="d-flex align-items-center justify-content-center gap-3">
+                      <button
+                        className="green d-flex align-items-center gap-1"
+                        onClick={() => setIsBranchModal(true)}
+                      >
+                        <i className="fa-solid fa-edit"></i>
+                        Tahrirlash
+                      </button>
+                      <button
+                        className="red d-flex align-items-center gap-1"
+                        onClick={() => setDeleteModal(true)}
+                      >
+                        <i className="fa-regular fa-trash-can"></i>
+                        O'chirish
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+        </table>
+      </div>
 
       {/* Modals */}
 
@@ -169,6 +164,6 @@ function Branches() {
       )}
     </div>
   );
-}
+  }
 
 export default Branches;
