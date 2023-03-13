@@ -11,19 +11,18 @@ function Login() {
 
   function submit(e) {
     e.preventDefault()
-    axios.post(Domain + '/login', {
+    axios.post('/login', {
       "user_email": data.email,
       "user_password": data.password
     })
       .then(data => setLogin(data))
-      .catch(err => console.log(err.data.message))
+      .catch(err => console.log(err?.response?.data?.message))
     if (login.status === 200) {
       localStorage.setItem("token", login.data.token);
       window.location = '/'
     }
   }
-    console.log(login.status);
-    console.log(login);
+
 
   function handle(e) {
     const newData = { ...data }

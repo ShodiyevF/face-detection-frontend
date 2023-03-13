@@ -15,8 +15,6 @@
 .user_modal_place {
     width: 60%;
     height: 600px;
-    /* width: 1080px;
-    height: 770px; */
     border-radius: 20px;
     z-index: 999;
     overflow: hidden;

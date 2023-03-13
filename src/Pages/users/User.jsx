@@ -1,71 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import icon from "../../utils/icons/users.png";
 import iconFilter from "../../utils/icons/filter.png";
 import "./users.css";
 import User_Modal from "../../components/modal/User_Modal";
 import UserSearchAndFilter from "../../components/userSearch/UserSearchAndFilter";
-import UserTable from "../../components/usertable/UserTable";
+import axios from "axios";
+import moment from "moment";
 
 function User() {
+  // data
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    loadUsers();
+  }, []);
+  async function loadUsers() {
+    let { data } = await axios.get("/users");
+    if (data) {
+      console.log(data);
+      setUsers(data);
+    }
+  }
   const [isopenModal, setIsOpenModal] = useState(false);
   const [isopenFilter, setIsOpenFilter] = useState(false);
 
-  const data = [
-    {
-      user_id: 1,
-      user_firstname: "bir",
-      user_lastname: "bir",
-      user_img: icon,
-      user_email: "test@test.com",
-      user_createdat: "2023 - 03 - 04",
-      role_id: { role_name: "Dasturchi" },
-    },
-    {
-      user_id: 1,
-      user_firstname: "bir",
-      user_lastname: "bir",
-      user_img: icon,
-      user_email: "test@test.com",
-      user_createdat: "2023 - 03 - 04",
-      role_id: { role_name: "Dasturchi" },
-    },
-    {
-      user_id: 2,
-      user_firstname: "bir",
-      user_lastname: "bir",
-      user_img: icon,
-      user_email: "test@test.com",
-      user_createdat: "2023 - 03 - 04",
-      role_id: { role_name: "Dasturchi" },
-    },
-    {
-      user_id: 3,
-      user_firstname: "bir",
-      user_lastname: "bir",
-      user_img: icon,
-      user_email: "test@test.com",
-      user_createdat: "2023 - 03 - 04",
-      role_id: { role_name: "Dasturchi" },
-    },
-    {
-      user_id: 3,
-      user_firstname: "bir",
-      user_lastname: "bir",
-      user_img: icon,
-      user_email: "test@test.com",
-      user_createdat: "2023 - 03 - 04",
-      role_id: { role_name: "Dasturchi" },
-    },
-    {
-      user_id: 3,
-      user_firstname: "bir",
-      user_lastname: "bir",
-      user_img: icon,
-      user_email: "test@test.com",
-      user_createdat: "2023 - 03 - 04",
-      role_id: { role_name: "Dasturchi" },
-    },
-  ];
+  // moment(p.createdAt).fromNow()
   return (
     <>
       {isopenModal && <User_Modal setIsOpenModal={setIsOpenModal} />}
@@ -88,53 +47,73 @@ function User() {
           </button>
         </div>
         {isopenFilter && <UserSearchAndFilter />}
-        {/* <UserTable data={data} /> */}
-        {/* <div className="table"> */}
-        <div className="tale_box">
-          <table className="table_box">
-            <thead className="sticky-top">
-              <tr className="first_child">
-                <th>Hodim</th>
-                <th>Email</th>
-                <th>Qabul qilingan sana</th>
-                <th>Kasb</th>
-                <th>Tahrirlash</th>
-              </tr>
-            </thead>
-            <tbody className="user_tbody">
-              {data?.map((person) => {
+        {/* table uchun maxsus */}
+        {users.length ? (
+          <div
+            className="div_table"
+            style={{ height: isopenFilter ? "350px" : "400px" }}
+          >
+            <div className="div_table_head">
+              <p>Hodim</p>
+              <p>Email</p>
+              <p>Qabul qilingan sana</p>
+              <p>Kasbi</p>
+              <p>Tahrirlash</p>
+            </div>
+            <div className="div_table_body">
+              {users?.map((item, idx) => {
                 return (
-                  <tr className="user_list">
-                    <td className="">
-                      <img src={person.icon} alt="avatar" />
-                    </td>
-                    <td className="">{person.user_email}</td>
-                    <td className="">
-                      {person.user_createdat.toString()}
-                    </td>
-                    <td className="">{person.role_id.role_name}</td>
-                    <td className="">
-                      <button className="user_list_green mx-1">
-                        <i
-                          class="fa-regular fa-pen-to-square user_btn_icons"
-                          style={{ marginRight: "5px" }}
-                        ></i>
+                  <div className="div_table_tbody">
+                    <span className="span_table_item">
+                      {item.user_firstname}
+                    </span>
+                    <span className="span_table_item">
+                      {item.user_email?.slice(0, 15)}...
+                    </span>
+                    <span className="span_table_item">
+                      {moment(item?.createdat).format("DD. MM. YYYY")}
+                    </span>
+                    <span className="span_table_item">
+                      {item?.role?.role_name}
+                    </span>
+                    <span className="span_table_item_btns">
+                      <button className="user_list_green">
+                        <i class="fa-regular fa-trash-can"></i>
                         Tahrirlash
                       </button>
-                      <button className="user_list_red mx-1">
-                        <i
-                          class="fa-regular fa-trash-can user_btn_icons"
-                          style={{ marginRight: "5px" }}
-                        ></i>
+                      <button className="user_list_red">
+                        <i class="fa-regular fa-pen-to-square"></i>
                         O'chirish
                       </button>
-                    </td>
-                  </tr>
+                    </span>
+                  </div>
                 );
               })}
-            </tbody>
-          </table>
-        </div>
+
+              {/* test uchun */}
+              {/* <div className="div_table_tbody">
+              <span className="span_table_item">Qurbonov Bahdorijon</span>
+              <span className="span_table_item">
+                qurbonovbahodirjonpersonal1817@gmail.com
+              </span>
+              <span className="span_table_item">2023 - 03 - 04</span>
+              <span className="span_table_item">Dasturchi</span>
+              <span className="span_table_item_btns">
+                <button className="user_list_green">
+                  <i class="fa-regular fa-trash-can"></i>
+                  Tahrirlash
+                </button>
+                <button className="user_list_red">
+                  <i class="fa-regular fa-pen-to-square"></i>
+                  O'chirish
+                </button>
+              </span>
+            </div> */}
+            </div>
+          </div>
+        ) : (
+          <h3 className="text-center">Ma'lumotlar topilmadi</h3>
+        )}
       </div>
     </>
   );
